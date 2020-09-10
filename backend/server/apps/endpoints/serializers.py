@@ -1,3 +1,6 @@
+# please add at the beginning of file backend/server/apps/endpoints/serializers.py
+from apps.endpoints.models import ABTest
+
 # backend/server/apps/endpoints/serializers.py file
 from rest_framework import serializers
 from apps.endpoints.models import Endpoint
@@ -55,3 +58,27 @@ class MLRequestSerializer(serializers.ModelSerializer):
         )
 
 
+# ...
+# rest of the code
+# ...
+
+# please add at the end of file backend/server/apps/endpoints/serializers.py
+class ABTestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ABTest
+        read_only_fields = (
+            "id",
+            "ended_at",
+            "created_at",
+            "summary",
+        )
+        fields = (
+            "id",
+            "title",
+            "created_by",
+            "created_at",
+            "ended_at",
+            "summary",
+            "parent_mlalgorithm_1",
+            "parent_mlalgorithm_2",
+            )
